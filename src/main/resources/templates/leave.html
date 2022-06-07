@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/app.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form>
+		<table>
+
+			<tr>
+				<td><label for="name">Employee Id</label></td>
+				<td><input type="text" name="empId" id="empId" required></input></td>
+			</tr>
+
+			<tr>
+				<td><label for="name">Employee Name</label></td>
+				<td><input type="text" name="name" id="name" required></input></td>
+			</tr>
+
+			<tr>
+				<td><label for="name">Status</label></td>
+				<td><input type="text" name="status" id="status" required></input></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type="submit" id="send" value="Submit"></input></td>
+			</tr>
+		</table>
+
+		<div class="row">
+			<div class="col-md-12">
+				<table id="conversation" class="table table-striped">
+					<thead>
+						<tr>
+							<th>Greetings</th>
+						</tr>
+					</thead>
+					<tbody id="greetings">
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</form>
+</body>
+</html>
