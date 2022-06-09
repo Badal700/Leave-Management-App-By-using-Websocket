@@ -12,21 +12,20 @@ function setConnected(connected) {
 	$("#greetings").html("");
 }
 
-function connect() {
+function connect(id) {
+	
 	var socket = new SockJS('/gs-guide-websocket');
 	stompClient = Stomp.over(socket);
 	stompClient.connect({}, function(frame) {
 		setConnected(true);
 		console.log('Connected: ' + frame);
 		stompClient.subscribe('/topic/greetings', function(greeting) {
-			console.log("0000000000000000000000000000");
 			showGreeting(JSON.parse(greeting.body).status);
 		});
-		stompClient.subscribe('/topic/greeting', function(greeting) {
-			console.log(greeting);
+		stompClient.subscribe('/topic/greeting/'+id, function(greeting) {
 			showGreeting(greeting.body);
 		});
-		
+				
 	});
 }
 
@@ -54,7 +53,9 @@ $(function() {
 	$("form").on('submit', function(e) {
 		e.preventDefault();
 	});
-	connect();
+	
+	$("#empId").change(function() { connect($("#empId").val()); });
+	
 	$("#disconnect").click(function() { disconnect(); });
 	$("#send").click(function() { sendName(); });
 });
